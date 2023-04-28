@@ -20,7 +20,7 @@ export default function SignIn(){
                     <Link className="text-sm text-blue-500" href="/recover">Esqueceu a senha?</Link>
                     <CustomButton>Entrar</CustomButton>
                 </form>
-                <p className="mt-12 hover:cursor-pointer">Não possui uma conta? <span className="text-blue-500">Crie uma aqui.</span></p>
+                <Link href="signup" className="mt-12 hover:cursor-pointer">Não possui uma conta? <span className="text-blue-500">Crie uma aqui.</span></Link>
             </main>
         </div>
     )
