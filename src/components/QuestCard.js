@@ -2,14 +2,19 @@ import Image from "next/image"
 
 export default function QuestCard(){
     return (
-        <div className="flex flex-col rounded-lg gap-4 w-4/5 p-4 bg-zinc-200 shadow-md">
+        <div className="flex flex-col rounded-lg gap-3 w-4/5 p-4 bg-zinc-200 shadow-md">
             <div className="flex flex-row justify-between items-center">
-                <h1 className="font-bold text-lg">
-                    A sala do auditorio é muito confortavel.
-                </h1>
-                <div className="p-1 rounded-md bg-green-500 text-white font-bold text-sm">
-                    #Elogio
+                <div className="flex flex-row gap-2 items-center">
+                    <h1 className="font-bold text-lg">
+                        A sala do auditorio é muito confortavel.
+                    </h1>
+                    <div className="p-1 rounded-md bg-green-500 text-white font-bold text-sm">
+                        #Elogio
+                    </div>
                 </div>
+                <button>
+                    <svg fill="#000" width="24" height="24" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/></svg>
+                </button>
             </div>
             <div>
                 <p>
