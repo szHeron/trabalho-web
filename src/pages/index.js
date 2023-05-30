@@ -1,8 +1,11 @@
-import Header from "@/components/Header"
-import CommentCard from "@/components/CommentCard"
-import CreateComment from "@/components/CreateComment"
+import Header from "../components/Header"
+import CommentCard from "../components/CommentCard"
+import CreateComment from "../components/CreateComment"
+import useAuth from "../hooks/useAuth"
 
 export default function Home() {
+  const { user } = useAuth()
+
   return (
     <div>
       <Header/>
@@ -12,7 +15,6 @@ export default function Home() {
         <CommentCard/>
         <CommentCard/>
       </div>
-      <CreateComment/>
     </div>
   )
 }
