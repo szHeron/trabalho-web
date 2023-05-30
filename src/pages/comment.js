@@ -1,6 +1,7 @@
 import CommentCard from "@/components/CommentCard"
 import Header from "@/components/Header"
 import ResponseComment from "@/components/ResponseComment"
+import CreateResponse from "@/components/CreateResponse"
 
 export default function Comment() {
   return (
@@ -17,6 +18,7 @@ export default function Comment() {
         <span class="h-0.5 w-[40vw] bg-black ml-2"></span>
       </div>
       <div className="flex flex-col gap-4 items-center pt-4 pb-4">
+        <CreateResponse/>
         <ResponseComment/>
         <ResponseComment/>
         <ResponseComment/>
