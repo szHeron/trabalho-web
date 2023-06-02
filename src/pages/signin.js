@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Link from "next/link";
 import { useRouter } from "next/router";
-import CustomInput from "@/components/CustomInput"
-import CustomButton from "@/components/CustomButton"
+import CustomInput from "../components/CustomInput"
+import CustomButton from "../components/CustomButton"
 import useAuth from "../hooks/useAuth";
 
 export default function SignIn(){
