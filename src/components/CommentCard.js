@@ -1,10 +1,14 @@
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import useAuth from "../hooks/useAuth"
 import UpdatePost from "../utils/postLike"
+import { CommentOptions } from "./CommentOptions"
+import { EditCard } from "./EditCard"
 
 export default function CommentCard(props){
     const { user } = useAuth()
+    const [ openEditModal, setOpenEditModal ] = useState(false)
 
     function handleLikedPost(){
         if(props.likes.indexOf(user._id) > -1){
@@ -13,7 +17,6 @@ export default function CommentCard(props){
         }else{
             UpdatePost({...props, likes: [...props.likes, user._id]})
         }
-            
     }
 
     return (
@@ -31,9 +34,7 @@ export default function CommentCard(props){
                         #{props.type}
                     </div>
                 </Link>
-                <button>
-                    <svg fill="#000" width="24" height="24" clipRule="evenodd" fillRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m16.5 11.995c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25zm-6.75 0c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25-1.008 2.25-2.25 2.25-2.25-1.008-2.25-2.25z"/></svg>
-                </button>
+                <CommentOptions setOpenEditModal={setOpenEditModal} id={props._id} author={props.author}/>
             </div>
             <div>
                 <p>
@@ -74,6 +75,7 @@ export default function CommentCard(props){
                     </span>
                 </div>
             </div>
+            {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} id={props.id} title={props.title} description={props.description} type={props.type}/>}
         </div>
     )
 }

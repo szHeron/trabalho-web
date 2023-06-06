@@ -7,13 +7,14 @@ import api from "../services/api"
 
 export default function Home() {
   const [posts, setPosts] = useState([])
-  const { user } = useAuth()
+  const { user, GetLoggedInUserFromCookie } = useAuth()
 
   useEffect(()=>{
     async function getPosts(){
       const response = await api.get("/")
       setPosts(response.data)
     }
+    GetLoggedInUserFromCookie()
     getPosts()
   },[])
 

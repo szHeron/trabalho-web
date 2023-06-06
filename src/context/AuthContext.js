@@ -1,16 +1,32 @@
 import { createContext, useState } from 'react';
+import Cookies from 'js-cookie'
 import api from '../services/api'
 
 export const AuthContext = createContext({});
 
 export default function AuthContextProvider(props){
-  const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
-  async function Login(loginUser){
+    function GetLoggedInUserFromCookie() {
+        const loggedInUser = Cookies.get('loggedInUser')
+        setUser(loggedInUser ? JSON.parse(loggedInUser) : null) 
+    }
+
+    function SaveLoggedInUserCookie(user){
+        const saveUser = {
+            id: user._id,
+            name: user.name,
+            email: user.email
+        }
+        Cookies.set('loggedInUser', JSON.stringify(saveUser), { expires: 7 })
+    }
+
+    async function Login(loginUser){
         if(loginUser.password && loginUser.email){
             try {
                 const response = await api.post('/login', loginUser)
                 setUser(response.data)
+                SaveLoggedInUserCookie(response.data)
                 return true
             }catch(e) {
                 console.log(e)
@@ -39,7 +55,7 @@ export default function AuthContextProvider(props){
     }
 
   return(
-    <AuthContext.Provider value={{user, Register, Login}}>
+    <AuthContext.Provider value={{user, Register, Login, GetLoggedInUserFromCookie}}>
       {props.children}
     </AuthContext.Provider>            
   )

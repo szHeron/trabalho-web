@@ -33,7 +33,7 @@ export default function CreateComment(){
                         #Critica
                     </button>
                 </div>
-                <button onClick={handleCreateNewComment} className="p-3 rounded-md bg-blue-500 text-white font-bold text-sm">
+                <button onClick={()=>handleCreateNewComment()} className="p-3 rounded-md bg-blue-500 text-white font-bold text-sm">
                     Criar post
                 </button>
             </div>
