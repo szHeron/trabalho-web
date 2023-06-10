@@ -5,10 +5,12 @@ import useAuth from "../hooks/useAuth"
 import UpdatePost from "../utils/postLike"
 import { CommentOptions } from "./CommentOptions"
 import { EditCard } from "./EditCard"
+import { HandleDelete } from "./HandleDelete"
 
 export default function CommentCard(props){
     const { user } = useAuth()
     const [ openEditModal, setOpenEditModal ] = useState(false)
+    const [ openDeleteModal, setOpenDeleteModal ] = useState(false)
 
     function handleLikedPost(){
         if(props.likes.indexOf(user._id) > -1){
@@ -34,7 +36,7 @@ export default function CommentCard(props){
                         #{props.type}
                     </div>
                 </Link>
-                <CommentOptions setOpenEditModal={setOpenEditModal} id={props._id} author={props.author}/>
+                <CommentOptions setOpenDeleteModal={setOpenDeleteModal} setOpenEditModal={setOpenEditModal} id={props._id} author={props.author}/>
             </div>
             <div>
                 <p>
@@ -75,6 +77,7 @@ export default function CommentCard(props){
                     </span>
                 </div>
             </div>
+            {openDeleteModal && <HandleDelete setOpenDeleteModal={setOpenDeleteModal} id={props._id} posts={props.posts} setPosts={props.setPosts}/>}
             {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} post={props} posts={props.posts} setPosts={props.setPosts}/>}
         </div>
     )
