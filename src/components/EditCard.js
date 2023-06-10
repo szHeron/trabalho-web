@@ -1,24 +1,34 @@
 import { useState } from "react";
 import api from "../services/api"
 
-export function EditCard({setOpenEditModal, post, posts, setPosts}){
+export function EditCard({setOpenEditModal, post, getPosts}){
     const [editPost, setEditPost] = useState({...post})
+    const [error, setError] = useState("")
+
+    function validation(){
+        if(editPost.title.length < 3){
+            setError("Insira um titulo válido!")
+            return false
+        }else if(editPost.description.length < 3){
+            setError("Insira uma descrição válida!")
+            return false
+        }else if(editPost.type.length < 3){
+            setError("Escolha qual o tipo da postagem!")
+            return false
+        }
+        return true
+    }
 
     async function handleEditComment(){
-        try{
-            const postEdited = await api.put(`/comment/${editPost._id}`, editPost)
-            setPosts(prevState => {
-                return prevState.map(obj => {
-                    if (obj.id === editPost._id) {
-                        return postEdited
-                    }
-                    return obj;
-                });
-            });
-          
-            setOpenEditModal(false)
-        }catch(e){
-            console.log("error")
+        if(validation()){
+            try{
+                await api.put(`/comment/${editPost._id}`, editPost)
+                getPosts()
+              
+                setOpenEditModal(false)
+            }catch(e){
+                console.log("error")
+            }
         }
     }
     return (
@@ -41,7 +51,7 @@ export function EditCard({setOpenEditModal, post, posts, setPosts}){
                     </div>
                 </div>
                 <div className="flex flex-row justify-between mt-4">
-                    <button onClick={()=>setOpenEditModal(false)} class="border-2 border-red-500 text-red-500 font-bold p-2 rounded hover:bg-red-500 hover:text-white">
+                    <button onClick={()=>setOpenEditModal(false)} className="border-2 border-red-500 text-red-500 font-bold p-2 rounded hover:bg-red-500 hover:text-white">
                         Fechar
                     </button>
                     <button onClick={()=>handleEditComment()} className="p-2 rounded-md bg-blue-500 text-white font-bold text-sm">

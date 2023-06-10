@@ -72,13 +72,13 @@ export default function CommentCard(props){
                     <span className="text-sm">
                         Postado por
                         <p className="font-semibold text-blue-500">
-                            Heron Rodrigues
+                            {props.author.name}
                         </p>
                     </span>
                 </div>
             </div>
-            {openDeleteModal && <HandleDelete setOpenDeleteModal={setOpenDeleteModal} id={props._id} setPosts={props.setPosts}/>}
-            {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} post={props} posts={props.posts} setPosts={props.setPosts}/>}
+            {openDeleteModal && <HandleDelete setOpenDeleteModal={setOpenDeleteModal} id={props._id} getPosts={props.getPosts}/>}
+            {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} post={props} getPosts={props.getPosts}/>}
         </div>
     )
 }

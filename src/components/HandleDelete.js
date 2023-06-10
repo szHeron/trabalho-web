@@ -1,7 +1,7 @@
 import { usePathname, useRouter } from 'next/navigation'
 import api from "../services/api"
 
-export function HandleDelete({setOpenDeleteModal, id, setPosts}){
+export function HandleDelete({setOpenDeleteModal, id, getPosts}){
     const { push } = useRouter()
     const pathname = usePathname()
     async function handleDeleteComment(){
@@ -11,9 +11,7 @@ export function HandleDelete({setOpenDeleteModal, id, setPosts}){
             if(pathname.startsWith("/comment")){
                 push("/")
             }else{
-                setPosts(prevState => {
-                    return prevState.filter(obj => obj._id !== id);
-                });
+                getPosts()
             }
         }catch(e){
             console.log("error")
