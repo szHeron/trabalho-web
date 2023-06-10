@@ -22,9 +22,9 @@ export function EditCard({setOpenEditModal, post, posts, setPosts}){
         }
     }
     return (
-        <div class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            <div class="bg-white rounded-lg p-8 w-1/2">
-                <h2 class="text-lg font-bold mb-4">Edite o conteúdo</h2>
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div className="bg-white rounded-lg p-8 w-1/2">
+                <h2 className="text-lg font-bold mb-4">Edite o conteúdo</h2>
                 <input type="text" value={editPost.title} onChange={(e)=>{setEditPost({...editPost, title: e.target.value})}} placeholder="Titulo" required={true} className="w-full p-2 rounded-md bg-zinc-300 outline-blue-500"/>
                 <input type="text" value={editPost.description} onChange={(e)=>{setEditPost({...editPost, description: e.target.value})}} placeholder="Descrição" required={true} className="w-full h-20 mt-2 p-2 rounded-md bg-zinc-300 outline-blue-500"/>
                 <div className="flex flex-row justify-between mt-2">

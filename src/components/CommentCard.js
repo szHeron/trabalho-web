@@ -77,7 +77,7 @@ export default function CommentCard(props){
                     </span>
                 </div>
             </div>
-            {openDeleteModal && <HandleDelete setOpenDeleteModal={setOpenDeleteModal} id={props._id} posts={props.posts} setPosts={props.setPosts}/>}
+            {openDeleteModal && <HandleDelete setOpenDeleteModal={setOpenDeleteModal} id={props._id} setPosts={props.setPosts}/>}
             {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} post={props} posts={props.posts} setPosts={props.setPosts}/>}
         </div>
     )
