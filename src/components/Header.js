@@ -10,7 +10,7 @@ export default function Header(){
             </Link>
             {
                 user?
-                    <p className="font-bold text-white text-lg">
+                    <p className="font-bold text-white text-lg px-6">
                         {user.name}
                     </p>
                     :

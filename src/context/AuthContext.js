@@ -14,7 +14,7 @@ export default function AuthContextProvider(props){
 
     function SaveLoggedInUserCookie(user){
         const saveUser = {
-            id: user._id,
+            _id: user._id,
             name: user.name,
             email: user.email
         }

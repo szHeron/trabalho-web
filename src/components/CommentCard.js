@@ -30,7 +30,7 @@ export default function CommentCard(props){
                     <h1 className="font-bold text-lg">
                         {props.title}
                     </h1>
-                    <div className="p-1 rounded-md bg-green-500 text-white font-bold text-sm">
+                    <div className={`p-1 rounded-md text-white font-bold text-sm ${props.type === "Elogio"?"bg-green-500":props.type === "Critica"?"bg-red-500":"bg-yellow-500"}`}>
                         #{props.type}
                     </div>
                 </Link>
@@ -75,7 +75,7 @@ export default function CommentCard(props){
                     </span>
                 </div>
             </div>
-            {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} id={props.id} title={props.title} description={props.description} type={props.type}/>}
+            {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} post={props} posts={props.posts} setPosts={props.setPosts}/>}
         </div>
     )
 }

@@ -14,9 +14,14 @@ export default function Home() {
       const response = await api.get("/")
       setPosts(response.data)
     }
-    GetLoggedInUserFromCookie()
+
     getPosts()
-  },[])
+
+  },[posts])
+
+  useEffect(()=>{
+    GetLoggedInUserFromCookie()
+  }, [])
 
   return (
     <div>
@@ -24,7 +29,7 @@ export default function Home() {
       <div className="flex flex-col gap-4 items-center pt-4 pb-4">
         {user && <CreateComment/>}
         {posts.map((item)=>{
-          return <CommentCard key={item._id} {...item}/>
+          return <CommentCard key={item._id} {...item} setPosts={setPosts} posts={posts}/>
         })}
       </div>
     </div>
