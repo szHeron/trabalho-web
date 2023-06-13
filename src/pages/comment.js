@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
-import api from "../services/api"
 import useAuth from "../hooks/useAuth"
+import api from "../services/api"
 import CommentCard from "../components/CommentCard"
 import Header from "../components/Header"
 import ResponseComment from "../components/ResponseComment"
 import CreateResponse from "../components/CreateResponse"
 
 export default function Comment() {
-  const router = useRouter()
   const [loading, setLoading] = useState(true)
-  const { query } = router
   const [post, setPost] = useState({})
-  const { user } = useAuth()
+  const { user, GetLoggedInUserFromCookie } = useAuth()
+  const router = useRouter()
+  const { query } = router
 
   useEffect(()=>{
     async function getPost(){
@@ -21,8 +21,11 @@ export default function Comment() {
       setPost(response.data)
       setLoading(false)
     }
-    if(query.id)
+    if(query.id){
+      GetLoggedInUserFromCookie()
       getPost()
+    }
+      
   },[query.id])
 
   if(loading){  
@@ -33,7 +36,7 @@ export default function Comment() {
     <div>
       <Header/>
       <div className="flex flex-col items-center mt-4">
-        <CommentCard {...post}/>
+        <CommentCard post={post} setPost={setPost}/>
       </div>
       <div className="flex flex-row items-center justify-center mt-4">
         <span className="h-0.5 w-[40vw] bg-black mr-2"></span>
@@ -43,12 +46,10 @@ export default function Comment() {
         <span className="h-0.5 w-[40vw] bg-black ml-2"></span>
       </div>
       <div className="flex flex-col gap-4 items-center pt-4 pb-4">
-        <CreateResponse/>
-        <ResponseComment/>
-        <ResponseComment/>
-        <ResponseComment/>
-        <ResponseComment/>
-        <ResponseComment/>
+        {user && <CreateResponse user={user} post={post}/>}
+        {post.comments.map((item, index)=>{
+          return <ResponseComment key={index} item={item}/>
+        })}
       </div>
     </div>
   )

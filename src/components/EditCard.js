@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../services/api"
 
-export function EditCard({setOpenEditModal, post, getPosts}){
+export function EditCard({setOpenEditModal, post, getPosts, setPost}){
     const [editPost, setEditPost] = useState({...post})
     const [error, setError] = useState("")
 
@@ -23,7 +23,11 @@ export function EditCard({setOpenEditModal, post, getPosts}){
         if(validation()){
             try{
                 await api.put(`/comment/${editPost._id}`, editPost)
-                getPosts()
+                if(!getPosts){
+                    setPost(editPost)
+                }else{
+                    getPosts()
+                }
               
                 setOpenEditModal(false)
             }catch(e){
@@ -50,6 +54,7 @@ export function EditCard({setOpenEditModal, post, getPosts}){
                         </button>
                     </div>
                 </div>
+                {error&&<p className="text-red-500">{error}</p>}
                 <div className="flex flex-row justify-between mt-4">
                     <button onClick={()=>setOpenEditModal(false)} className="border-2 border-red-500 text-red-500 font-bold p-2 rounded hover:bg-red-500 hover:text-white">
                         Fechar
