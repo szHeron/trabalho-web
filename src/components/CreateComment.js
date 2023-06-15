@@ -40,8 +40,8 @@ export default function CreateComment({getPosts}){
             <input type="text" onChange={(e)=>{setNewPost({...newPost, title: e.target.value})}} placeholder="Titulo" required={true} className="w-full p-2 rounded-md bg-zinc-300 outline-blue-500"/>
             <input type="text" onChange={(e)=>{setNewPost({...newPost, description: e.target.value})}} placeholder="Descrição" required={true} className="w-full h-20 p-2 rounded-md bg-zinc-300 outline-blue-500"/>
             {error && <p className="text-red-500">{error}</p>}
-            <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-col md:flex-row justify-between">
+                <div className="flex flex-row m-2 gap-4 items-center">
                     <button onClick={()=>setNewPost({...newPost, type: 'Elogio'})} className={`p-1 rounded-md font-bold text-sm ${newPost.type == 'Elogio'?"bg-green-500 text-white":"border-solid border-2 text-green-500 border-green-500"}`}>
                         #Elogio
                     </button>

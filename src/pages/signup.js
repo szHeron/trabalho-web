@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Link from "next/link";
 import { useRouter } from "next/router";
-import CustomInput from "@/components/CustomInput"
-import CustomButton from "@/components/CustomButton"
+import CustomInput from "../components/CustomInput"
+import CustomButton from "../components/CustomButton"
 import useAuth from "../hooks/useAuth"
 
 export default function Signup(){
@@ -22,13 +22,13 @@ export default function Signup(){
 
     return (
         <div className="flex flex-row w-screen h-screen">
-            <aside className="flex w-1/2 bg-linear-background justify-center items-center">
+            <aside className="flex w-0 md:w-1/2 bg-linear-background justify-center items-center">
                 <h1 className="text-white font-bold text-4xl">Cadastro</h1>
             </aside>
-            <main className="flex flex-col w-1/2 justify-center items-center">
+            <main className="flex flex-col w-full md:w-1/2 justify-center items-center">
                 <h1 className="font-bold text-3xl">Olá</h1>
                 <p className="font-thin text-md mb-12">Crie sua conta para poder acessar</p>
-                <div className="flex flex-col gap-3 w-2/5 justify-between">
+                <div className="flex flex-col gap-3 w-4/5 md:w-2/5 justify-between">
                     <CustomInput onChange={(e)=>{setNewUser({...newUser, name: e.target.value})}} placeholder="Nome" required icon={<svg fill="rgb(161 161 170)" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"/></svg>}/>
                     <CustomInput onChange={(e)=>{setNewUser({...newUser, email: e.target.value})}} placeholder="Email" required icon={<svg fill="rgb(161 161 170)" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>}/>
                     <CustomInput type="password" onChange={(e)=>{setNewUser({...newUser, password: e.target.value})}} placeholder="Senha" required icon={<svg fill="rgb(161 161 170)" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M6 8v-2c0-3.313 2.686-6 6-6 3.312 0 6 2.687 6 6v2h-2v-2c0-2.206-1.795-4-4-4s-4 1.794-4 4v2h-2zm15 2v14h-18v-14h18zm-2 2h-14v10h14v-10z"/></svg>}/>
