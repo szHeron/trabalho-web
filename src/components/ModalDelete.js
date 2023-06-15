@@ -1,13 +1,15 @@
 import { usePathname, useRouter } from 'next/navigation'
 import api from "../services/api"
 
-export function HandleDelete({setOpenDeleteModal, id, getPosts}){
+export function DeleteModal({setOpenDeleteModal, id, getPosts}){
     const { push } = useRouter()
     const pathname = usePathname()
+
     async function handleDeleteComment(){
         try{
             await api.delete(`/comment/${id}`)
             setOpenDeleteModal(false)
+
             if(pathname.startsWith("/comment")){
                 push("/")
             }else{
@@ -17,6 +19,7 @@ export function HandleDelete({setOpenDeleteModal, id, getPosts}){
             console.log("error")
         }
     }
+
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="flex flex-col justify-center items-center bg-white rounded-lg p-8 w-4/5 md:w-1/3">

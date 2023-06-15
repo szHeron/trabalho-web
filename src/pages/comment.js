@@ -46,7 +46,7 @@ export default function Comment() {
         <span className="h-0.5 w-[40vw] bg-black ml-2"></span>
       </div>
       <div className="flex flex-col gap-4 items-center pt-4 pb-4">
-        {user && <CreateResponse user={user} post={post}/>}
+        {user && <CreateResponse user={user} post={post} setPost={setPost}/>}
         {post.comments.map((item, index)=>{
           return <ResponseComment key={index} item={item}/>
         })}

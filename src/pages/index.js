@@ -25,7 +25,7 @@ export default function Home() {
       <div className="flex flex-col gap-4 items-center pt-4 pb-4">
         {user && <CreateComment getPosts={getPosts}/>}
         {posts.map((item)=>{
-          return <CommentCard key={item._id} post={item} setPosts={setPosts} posts={posts}/>
+          return <CommentCard key={item._id} post={item} setPosts={setPosts} posts={posts} getPosts={getPosts}/>
         })}
       </div>
     </div>

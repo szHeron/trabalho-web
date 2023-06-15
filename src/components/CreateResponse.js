@@ -1,11 +1,13 @@
 import { useState } from "react"
 import api from "../services/api";
 
-export default function CreateResponse({post, user}){
+export default function CreateResponse({user, post, setPost}){
     const [newComment, setNewComment] = useState({comment: '', author_name: user.name})
 
     async function handleCreateNewResponse(){
         post.comments.push(newComment)
+        setPost({...post})
+        setNewComment("")
         try{
             api.put(`/comment/${post._id}`, post)
         }catch(e){

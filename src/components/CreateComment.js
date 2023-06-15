@@ -26,6 +26,7 @@ export default function CreateComment({getPosts}){
             try{
                 await api.post("/createComment", newPost)
                 getPosts()
+                setNewPost({...newPost, title: "", description: "", type: ""})
             }catch(e){
                 console.log("error")
             }
@@ -37,8 +38,8 @@ export default function CreateComment({getPosts}){
             <h1 className="font-bold text-lg">
                 Crie um post aqui
             </h1>
-            <input type="text" onChange={(e)=>{setNewPost({...newPost, title: e.target.value})}} placeholder="Titulo" required={true} className="w-full p-2 rounded-md bg-zinc-300 outline-blue-500"/>
-            <input type="text" onChange={(e)=>{setNewPost({...newPost, description: e.target.value})}} placeholder="Descrição" required={true} className="w-full h-20 p-2 rounded-md bg-zinc-300 outline-blue-500"/>
+            <input type="text" value={newPost.title} onChange={(e)=>{setNewPost({...newPost, title: e.target.value})}} placeholder="Titulo" required={true} className="w-full p-2 rounded-md bg-zinc-300 outline-blue-500"/>
+            <input type="text" value={newPost.description} onChange={(e)=>{setNewPost({...newPost, description: e.target.value})}} placeholder="Descrição" required={true} className="w-full h-20 p-2 rounded-md bg-zinc-300 outline-blue-500"/>
             {error && <p className="text-red-500">{error}</p>}
             <div className="flex flex-col md:flex-row justify-between">
                 <div className="flex flex-row m-2 gap-4 items-center">

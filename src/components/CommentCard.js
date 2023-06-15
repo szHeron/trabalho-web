@@ -5,9 +5,9 @@ import useAuth from "../hooks/useAuth"
 import UpdatePost from "../utils/postLike"
 import { CommentOptions } from "./CommentOptions"
 import { EditCard } from "./EditCard"
-import { HandleDelete } from "./HandleDelete"
+import { DeleteModal } from "./ModalDelete"
 
-export default function CommentCard({post, posts, setPost, setPosts}){
+export default function CommentCard({post, posts, setPost, setPosts, getPosts}){
     const { user } = useAuth()
     const [ openEditModal, setOpenEditModal ] = useState(false)
     const [ openDeleteModal, setOpenDeleteModal ] = useState(false)
@@ -89,7 +89,7 @@ export default function CommentCard({post, posts, setPost, setPosts}){
                     </span>
                 </div>
             </div>
-            {openDeleteModal && <HandleDelete setOpenDeleteModal={setOpenDeleteModal} id={post._id} getPosts={post.getPosts}/>}
+            {openDeleteModal && <DeleteModal setOpenDeleteModal={setOpenDeleteModal} id={post._id} getPosts={getPosts}/>}
             {openEditModal && <EditCard setOpenEditModal={setOpenEditModal} post={post} getPosts={post.getPosts} setPost={setPost}/>}
         </div>
     )
