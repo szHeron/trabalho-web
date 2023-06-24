@@ -7,7 +7,6 @@ export default function CreateResponse({user, post, setPost}){
     async function handleCreateNewResponse(){
         post.comments.push(newComment)
         setPost({...post})
-        setNewComment("")
         try{
             api.put(`/comment/${post._id}`, post)
         }catch(e){

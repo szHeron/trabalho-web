@@ -39,7 +39,7 @@ export default function CreateComment({getPosts}){
                     await api.post("/createComment", newPost)
                 }
                 getPosts()
-                setNewPost({...newPost, title: "", description: "", type: ""})
+                setNewPost({...newPost, title: "", description: "", type: "", photo:null})
             }catch(e){
                 console.log("error", e)
             }

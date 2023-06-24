@@ -8,15 +8,16 @@ import useAuth from "../hooks/useAuth"
 export default function Signup(){
     const [newUser, setNewUser] = useState({name: "", email: "", password: ""})
     const [confirmPass, setConfirmPass] = useState("")
+    const [error, setError] = useState("")
     const router = useRouter();
     const { Register } = useAuth()
     
     async function handleRegister(){
         const response = await Register(newUser, confirmPass)
-        if(response){
+        if(response.startsWith("Entrou")){
             router.push('/')
         }else{
-            console.log("ERROR")
+            setError(response)
         }
     }
 
@@ -33,6 +34,7 @@ export default function Signup(){
                     <CustomInput onChange={(e)=>{setNewUser({...newUser, email: e.target.value})}} placeholder="Email" required icon={<svg fill="rgb(161 161 170)" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>}/>
                     <CustomInput type="password" onChange={(e)=>{setNewUser({...newUser, password: e.target.value})}} placeholder="Senha" required icon={<svg fill="rgb(161 161 170)" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M6 8v-2c0-3.313 2.686-6 6-6 3.312 0 6 2.687 6 6v2h-2v-2c0-2.206-1.795-4-4-4s-4 1.794-4 4v2h-2zm15 2v14h-18v-14h18zm-2 2h-14v10h14v-10z"/></svg>}/>
                     <CustomInput type="password" onChange={(e)=>{setConfirmPass(e.target.value)}} placeholder="Confirme sua senha" required icon={<svg fill="rgb(161 161 170)" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M6 8v-2c0-3.313 2.686-6 6-6 3.312 0 6 2.687 6 6v2h-2v-2c0-2.206-1.795-4-4-4s-4 1.794-4 4v2h-2zm15 2v14h-18v-14h18zm-2 2h-14v10h14v-10z"/></svg>}/>
+                    {error&&<p className="text-red-500">{error}</p>}
                     <CustomButton onClick={handleRegister}>Cadastrar</CustomButton>
                 </div>
                 <Link href="signin" className="mt-12 hover:cursor-pointer">Já possui uma conta? <span className="text-blue-500">Acesse aqui.</span></Link>

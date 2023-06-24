@@ -9,7 +9,7 @@ import CreateResponse from "../components/CreateResponse"
 
 export default function Comment() {
   const [loading, setLoading] = useState(true)
-  const [post, setPost] = useState({})
+  const [ post, setPost ] = useState({})
   const { user, GetLoggedInUserFromCookie } = useAuth()
   const router = useRouter()
   const { query } = router

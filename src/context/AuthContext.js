@@ -27,12 +27,13 @@ export default function AuthContextProvider(props){
                 const response = await api.post('/login', loginUser)
                 setUser(response.data)
                 SaveLoggedInUserCookie(response.data)
-                return true
+                return "Entrou"
             }catch(e) {
                 console.log(e)
+                return "Senha ou usuario incorretos!"
             }
         }else{
-            console.log('Preencha todos os campos.')
+            return "Preencha todos os campos."
         }
     }
 
@@ -42,15 +43,15 @@ export default function AuthContextProvider(props){
                 try {
                     const response = await api.post('/register', newUser)
                     setUser(response.data)
-                    return true
+                    return "entrou"
                 }catch(e) {
                     return e
                 }
             }else{
-                console.log('Preencha todos os campos.')
+                return 'As senhas precisam ser iguais!.'
             }
         }else{
-            console.log('Preencha todos os campos.')
+            return 'Preencha todos os campos.'
         }
     }
 
