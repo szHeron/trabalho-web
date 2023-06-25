@@ -1,17 +1,11 @@
 import { useState } from "react"
 import Link from "next/link";
-import { useRouter } from "next/router";
 import CustomInput from "../components/CustomInput"
 import CustomButton from "../components/CustomButton"
-import useAuth from "../hooks/useAuth";
 
-export default function SignIn(){
+export default function RecoverPassword(){
     const [user, setUser] = useState({email: "", password: ""})
     const [error, setError] = useState("")
-
-    function togglePasswordVisibility() {
-        setShowPassword(!showPassword);
-    }
 
     return (
         <div className="flex flex-row w-screen h-screen">
