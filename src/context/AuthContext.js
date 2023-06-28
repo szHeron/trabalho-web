@@ -43,9 +43,10 @@ export default function AuthContextProvider(props){
                 try {
                     const response = await api.post('/register', newUser)
                     setUser(response.data)
+                    SaveLoggedInUserCookie(response.data)
                     return "entrou"
                 }catch(e) {
-                    return e
+                    return "Usuario ja existe!"
                 }
             }else{
                 return 'As senhas precisam ser iguais!.'
