@@ -14,7 +14,7 @@ export default function Signup(){
     
     async function handleRegister(){
         const response = await Register(newUser, confirmPass)
-        if(response.startsWith("Entrou")){
+        if(response.startsWith("entrou")){
             router.push('/')
         }else{
             setError(response)

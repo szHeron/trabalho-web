@@ -20,7 +20,7 @@ export default function CommentCard({post, posts, setPost, setPosts, getPosts}){
                 setPost({...post, likes: newLikes})
             }else{
                 const newPosts = posts.filter(item => item._id != post._id)
-                setPosts([...newPosts, {...post, likes: newLikes}])
+                setPosts([...newPosts, {...post, likes: newLikes}].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)))
             }
         }else{
             UpdatePost({...post, likes: [...post.likes, user._id]})
@@ -28,7 +28,7 @@ export default function CommentCard({post, posts, setPost, setPosts, getPosts}){
                 setPost({...post, likes: [...post.likes, user._id]})
             }else{
                 const newPosts = posts.filter(item => item._id != post._id)
-                setPosts([...newPosts, {...post, likes: [...post.likes, user._id]}])
+                setPosts([...newPosts, {...post, likes: [...post.likes, user._id]}].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)))
             }
         }
     }
@@ -57,7 +57,7 @@ export default function CommentCard({post, posts, setPost, setPosts, getPosts}){
             </div>
             {post.photo && (
                 <div className="flex w-full justify-center items-center">
-                    <Image height={256} width={256} alt="Image do post" src={post.photo}/>
+                    <Image height={512} width={512} alt="Image do post" src={post.photo}/>
                 </div>
             )}
             <div className="flex flex-row justify-between items-center">

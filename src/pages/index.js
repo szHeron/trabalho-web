@@ -11,7 +11,8 @@ export default function Home() {
 
   async function getPosts(){
     const response = await api.get("/")
-    setPosts(response.data)
+    const postByCreatedOrder = response.data.sort((a, b) => a.createdAt - b.createdAt)
+    setPosts(postByCreatedOrder)
   }
 
   useEffect(()=>{
